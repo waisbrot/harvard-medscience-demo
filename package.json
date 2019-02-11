@@ -1,0 +1,22 @@
+{
+  "fitbit": {
+    "appUUID": "498c9069-7bc3-4cc2-a567-d4362a5e9aa2",
+    "appType": "clockface",
+    "appDisplayName": "HMSWatch",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "higgs",
+      "meson"
+    ],
+    "i18n": {
+      "en": {
+        "name": "HMSWatch"
+      }
+    }
+  },
+  "devDependencies": {
+    "@fitbit/sdk": "~1.0.0"
+  }
+}
