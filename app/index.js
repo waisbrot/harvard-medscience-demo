@@ -1,16 +1,12 @@
 import clock from "clock";
 import document from "document";
 import { preferences } from "user-settings";
-import * as util from "../common/utils";
 import { HeartRateSensor } from "heart-rate";
-
-// Set up the Heart Rate sensor!
-const hrm = new HeartRateSensor();
-hrm.start();
+import * as util from "../common/utils";
+import * as watch from '../common/functions' ;
 
 // Find the things we want to change
 const myLabel = document.getElementById("myLabel");
-const BackgroundColor = document.getElementById("BackgroundColor");
 
 // Update the clock every minute
 clock.granularity = "minutes";
@@ -32,16 +28,12 @@ clock.ontick = (evt) => {
 
 // This gets called every second, to update our colors
 function refreshData() {
-  const data = {
-      hrm: {
-      heartRate: hrm.heartRate ? hrm.heartRate : 0
-    }
-  }
-  console.log(JSON.stringify(data));
-  let blue = 215 - data.hrm.heartRate;
-  let red = 40 + data.hrm.heartRate;
+  let heartrate = watch.GetHeartRate()
+  console.log(heartrate);
+  let blue = 215 - heartrate;
+  let red = 40 + heartrate;
   let green = 0;
-  BackgroundColor.style.fill = util.RGB2HTML(red,green,blue);
+  watch.SetBackgroundColor(red,green,blue);
 }
 
 refreshData();
