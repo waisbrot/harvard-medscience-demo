@@ -1,4 +1,9 @@
+<!-- The watch-face is an SVG https://developer.mozilla.org/en-US/docs/Web/SVG/Element -->
 <svg class="background">
-  <rect id="BackgroundColor" height='500' width='500' fill='red'/> 
-  <text id="myLabel" />
+  <!-- A big rectangle in the background to set the color -->
+  <rect id="BackgroundColor" class="background"/>
+  <!-- A PNG image -->
+  <image id="BackgroundImage" class="foreground"/>
+  <!-- A text field that's used to show a digital clock -->
+  <text id="TimeText" class="foreground"/>
 </svg>

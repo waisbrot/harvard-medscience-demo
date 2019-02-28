@@ -1,40 +1,40 @@
 import clock from "clock";
 import document from "document";
-import { preferences } from "user-settings";
 import { HeartRateSensor } from "heart-rate";
-import * as util from "../common/utils";
 import * as watch from '../common/functions' ;
 
-// Find the things we want to change
-const myLabel = document.getElementById("myLabel");
-
 // Update the clock every minute
-clock.granularity = "minutes";
+clock.granularity = "seconds";
 
-// Update the <text> element every tick with the current time
+// Update the <text> element every tick with the current time.
+// With a granularity of 'seconds', that means it gets called once every second.
+// This function will not get called when the display is off
 clock.ontick = (evt) => {
-  let today = evt.date;
-  let hours = today.getHours();
-  if (preferences.clockDisplay === "12h") {
-    // 12h format
-    hours = hours % 12 || 12;
-  } else {
-    // 24h format
-    hours = util.zeroPad(hours);
-  }
-  let mins = util.zeroPad(today.getMinutes());
-  myLabel.text = `${hours}:${mins}`;
+    colorBackground();
+    imageBackground();
+    //watch.DrawTimeSmallCorner(evt, 'white');
+};
+
+// Make a background color based on the current heart-rate
+function colorBackground() {
+    let heartrate = watch.GetHeartRate();
+    console.log(`HR: ${heartrate}`);
+
+    let blue = 215 - heartrate;
+    let red = 40 + heartrate;
+    let green = 0;
+    watch.SetBackgroundColor(red, green, blue);
 }
 
-// This gets called every second, to update our colors
-function refreshData() {
-  let heartrate = watch.GetHeartRate()
-  console.log(heartrate);
-  let blue = 215 - heartrate;
-  let red = 40 + heartrate;
-  let green = 0;
-  watch.SetBackgroundColor(red,green,blue);
+function imageBackground() {
+    let heartrate = watch.GetHeartRate();
+    if (heartrate > 130) {
+        watch.SetImage('running.png');
+    } else if (heartrate > 100) {
+        watch.SetImage('walking.png');
+    } else if (heartrate > 70) {
+        watch.SetImage('sitting.png');
+    } else {
+        watch.SetImage('sleeping.png');
+    }
 }
-
-refreshData();
-setInterval(refreshData, 1000);
