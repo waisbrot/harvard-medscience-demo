@@ -40,11 +40,17 @@ function imageBackground() {
     }
 }
 
+let framesRemaining = 5;
+let showBPM = false;
 function drawText() {
-    let heartrate = watch.GetHeartRate();
-    if (heartrate === 0) {
-        watch.DrawText('HMS DEMO', 'white');
-    } else {
+    if (framesRemaining-- < 1) {
+        framesRemaining = 5;
+        showBPM = !showBPM;
+    }
+    if (showBPM) {
+        let heartrate = watch.GetHeartRate();
         watch.DrawText(heartrate + ' bpm', 'white');
+    } else {
+        watch.DrawText('HMS 2', 'white');
     }
 }

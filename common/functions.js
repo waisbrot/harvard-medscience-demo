@@ -84,6 +84,10 @@ export function DrawTimeSmallCorner(evt, color) {
 export function DrawText(text, color) {
     BigText.text = text;
     BigText.style.fill = color;
+    BigText.style.fontSize = 50;
+    BigText.style.textAnchor = 'right';
+    BigText.x = 150;
+    BigText.y = 190;
 }
 
 /**********************************************************************
