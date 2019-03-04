@@ -11,8 +11,9 @@ clock.granularity = "seconds";
 // This function will not get called when the display is off
 clock.ontick = (evt) => {
     colorBackground();
-    imageBackground();
-    //watch.DrawTimeSmallCorner(evt, 'white');
+    //imageBackground();
+    drawText();
+    watch.DrawTimeSmallCorner(evt, 'white');
 };
 
 // Make a background color based on the current heart-rate
@@ -36,5 +37,14 @@ function imageBackground() {
         watch.SetImage('sitting.png');
     } else {
         watch.SetImage('sleeping.png');
+    }
+}
+
+function drawText() {
+    let heartrate = watch.GetHeartRate();
+    if (heartrate === 0) {
+        watch.DrawText('HMS DEMO', 'white');
+    } else {
+        watch.DrawText(heartrate + ' bpm', 'white');
     }
 }

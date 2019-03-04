@@ -6,4 +6,6 @@
   <image id="BackgroundImage" class="foreground"/>
   <!-- A text field that's used to show a digital clock -->
   <text id="TimeText" class="foreground"/>
+  <!-- A text field that's used for general text -->
+  <text id="BigText" class="foreground"/>
 </svg>

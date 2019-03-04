@@ -12,8 +12,8 @@
 }
 
 #TimeText {
-  font-family: System-Bold;
-  text-length: 32;
+    font-family: System-Bold;
+    text-length: 32;
 }
 
 .smallCornerClock {
@@ -21,4 +21,12 @@
     position: absolute;
     top: 0px;
     right: 0px;
+}
+
+#BigText {
+    font-family: System-Bold;
+    text-length: 80;
+    text-anchor: middle;
+    x: 50;
+    y: 190;
 }

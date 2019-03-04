@@ -21,6 +21,9 @@ const BackgroundImage = document.getElementById('BackgroundImage');
 // The text component where we draw the time
 const TimeText = document.getElementById("TimeText");
 
+// Some text in the middle of the screen
+const BigText = document.getElementById('BigText');
+
 // *** Set up sensors ***
 
 // Set up the Heart Rate sensor!
@@ -78,6 +81,10 @@ export function DrawTimeSmallCorner(evt, color) {
     TimeText.y = 20;
 }
 
+export function DrawText(text, color) {
+    BigText.text = text;
+    BigText.style.fill = color;
+}
 
 /**********************************************************************
  * PRIVATE FUNCTIONS
